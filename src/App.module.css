@@ -7,3 +7,11 @@
 .col-md-4 > img {
   width: 80%;
 }
+
+.b{
+  border: 1px solid red;
+}
+
+.container {
+  border: 1px solid blue;
+}
