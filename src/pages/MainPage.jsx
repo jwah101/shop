@@ -7,7 +7,6 @@ function MainPage({fruit}) {
 
   const visibleFruit = fruit.slice(0,fruitCount); // 0~2 이후엔 다 삭제
 
-  console.log(visibleFruit)
 
 
   return (
