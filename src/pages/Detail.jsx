@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
+import { Nav } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import TabContent from "../component/TabContent";
+import { useDispatch } from "react-redux";
+import { addItem } from "../redux/cartslice";
 
 function Detail ({fruit}) {
 
@@ -8,6 +12,9 @@ function Detail ({fruit}) {
   const[num , setNum] = useState(0);
   const[num2 , setNum2] = useState(0);
   const [alert, setAlert] = useState(true);
+  const [tabNumber, setTabNumber] = useState(0);
+  const dispatch = useDispatch();
+
 
   //상품 번호가 없는 곳에 들어갔을 때 id배열로 가져와서 true false확인 후 없으면 존재 x 표시
   const selectedFruit = fruit[id];
@@ -20,7 +27,6 @@ function Detail ({fruit}) {
     // 타이머 설정 함수
     let timer = setTimeout(() => {
         setAlert(false);
-        console.log('detail컴포넌트 useEffect')
       }, 5000);
 
         return() => {
@@ -75,9 +81,39 @@ function Detail ({fruit}) {
           <h4>{fruit[id].title}</h4>
           <p>{fruit[id].content}</p>
           <p>{fruit[id].price}</p>
-          <button className="btn btn-danger">주문하기</button>
+          <button className="btn btn-danger" onClick={()=>{
+            const item = { // 버튼 누를 시 item 배열을 만들어주는 것
+              id: id,
+              title: fruit[id].title,
+              count:1
+            }
+            dispatch(addItem(item)); // cartslice에 additem 만든 것 디스패치로 호출
+            window.alert('장바구니에 담았습니다.')// 모달 창이 작동 안될때 앞에 window.붙이기
+          }}>주문하기</button>
         </div>
       </div>
+
+
+      <Nav className="mt-5" variant = "tabs" justify>
+        <Nav.Item>
+          <Nav.Link eventKey="link-0" onClick={()=>{
+            setTabNumber(0);
+          }}>상세정보</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-1" onClick={()=>{
+            setTabNumber(1);
+          }}>리뷰</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-2" onClick={()=>{
+            setTabNumber(2);
+          }}>반품, 교환정보</Nav.Link>
+        </Nav.Item>
+      </Nav>
+
+      <TabContent tabNumber={tabNumber}/>
+  
     </div>
   )
 }
