@@ -1,6 +1,6 @@
-import Card from "../component/Card"
 import bg from "../bg.jpg"
 import { useState } from "react";
+import Card from "../component/Card";
 
 function MainPage({fruit}) {
   const [fruitCount , setFruitCount] = useState(3); // 처음 화면에 몇개 과일이 몇개 보일지 지정
