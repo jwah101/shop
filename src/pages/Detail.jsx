@@ -75,7 +75,7 @@ function Detail ({fruit}) {
 
       <div className="row">
         <div className="col-md-6">
-          <img src={`https://raw.githubusercontent.com/ghkdss/react_sample_data/main/img/${fruit[id].title}.jpg`} alt="" />
+          <img src={`https://raw.githubusercontent.com/ghkdss/react_sample_data/main/img/${fruit[id].title}.jpg`}  width='80%' alt="" />
         </div>
         <div className="col-md-6">
           <h4>{fruit[id].title}</h4>
