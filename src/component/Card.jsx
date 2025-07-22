@@ -9,7 +9,7 @@ function Card ({data}) {
             navigate('/detail/'+ data.id )
           }}>
             {/* 기본 경로로 이미지 불러오기 */}
-            <img src={`https://raw.githubusercontent.com/ghkdss/react_sample_data/main/img/${data.title}.jpg`} alt="" width='80%'/>
+            <img src={`https://raw.githubusercontent.com/ghkdss/react_sample_data/main/img/${data.title}.jpg`} alt="" width='50%'/>
             <h4>{data.title}</h4>
             <p>{data.content}</p>
             <p>{data.price}</p>
