@@ -1,4 +1,4 @@
-import Card from "../component/card"
+import Card from "../component/Card"
 import bg from "../bg.jpg"
 import { useState } from "react";
 
