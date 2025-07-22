@@ -33,7 +33,7 @@ const Div = styled.div`
 `
 
 function App() {
-  const [fruit, setFruit] = useState([]);// 새로운 배열을 넣기 위해 빈배열로
+  const [fruit, setFruit] = useState([]); // 새로운 배열을 넣기 위해 빈배열로
 
   useEffect(()=>{
     axios.get('https://raw.githubusercontent.com/ghkdss/react_sample_data/main/fruit.json')
