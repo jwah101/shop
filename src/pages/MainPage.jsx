@@ -12,8 +12,8 @@ function MainPage({fruit}) {
   return (
     <>
       <div className="main-bg" style={{backgroundImage:'url('+ bg +')', height:'300px'}}></div>
-      <div className='container'>
-         <div className='row'>
+        <div className='container'>
+         <div className="row">
             {
               visibleFruit.map((data, i)=>{
                 return(

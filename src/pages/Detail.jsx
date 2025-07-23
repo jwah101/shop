@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import TabContent from "../component/TabContent";
 import { useDispatch } from "react-redux";
 import { addItem } from "../redux/cartslice";
+import { setWatched } from "../redux/watchedslice";
+import { setPageTitle } from "../util/setTitle";
 
 function Detail ({fruit}) {
 
@@ -30,7 +32,7 @@ function Detail ({fruit}) {
       }, 5000);
 
         return() => {
-          console.log('clean-fn')
+
           clearTimeout(timer); // 클리어 타임을 사용하려면 변수에 담아서 사용해야함
         }
       },[])
@@ -46,6 +48,32 @@ function Detail ({fruit}) {
   //   console.log('useEffect 확인용 콘솔')
   // }, [num])
 
+
+
+  useEffect(()=>{
+    // 방금 본 상품의 id를 로컬 스토리지에 추가
+    // 로컬 스토리지에는 문자열로 들어가서 JSON으로 변환해줘야한다.
+    let watched = localStorage.getItem('watched')
+    watched = JSON.parse(watched); // 배열 형태로 변환
+
+
+    // .includes : 해당 배열에 값이 있으면 true/ 없으면 false
+    // true 일땐 삭제X / false 일때 삭제
+    if(watched.length===3 && !watched.includes(id))
+      watched.pop(); // 배열 제거 하는 함수/ 3개 면 하나 제거
+
+    watched = [id, ...watched] // 아이디를 추가해주는 로컬 스토리지에
+    watched = new Set(watched); // 중복 배열 삭제 방법 그리고 중복 제거후 다시 배열로 변환
+    watched = Array.from(watched); // array로 변경해줌 해줘야함
+
+    localStorage.setItem('watched', JSON.stringify(watched)); // 다시 문자열 변환하여 사용
+    dispatch(setWatched(watched))
+
+  },[])
+  //페이지 타이틀 변경
+  useEffect(()=>{
+    setPageTitle(`${id}번 상품`)
+  })
 
 
 
@@ -75,7 +103,7 @@ function Detail ({fruit}) {
 
       <div className="row">
         <div className="col-md-6">
-          <img src={`https://raw.githubusercontent.com/ghkdss/react_sample_data/main/img/${fruit[id].title}.jpg`}  width='80%' alt="" />
+          <img src={`https://raw.githubusercontent.com/ghkdss/react_sample_data/main/img/${fruit[id].title}.jpg`} width='80%' alt="" />
         </div>
         <div className="col-md-6">
           <h4>{fruit[id].title}</h4>

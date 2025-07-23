@@ -1,0 +1,19 @@
+.WatchedProduct{
+  max-width: 120px;
+  margin: 0 auto;
+  padding: 5px;
+  position: fixed;
+  right: 5px;
+  top: 300px;
+}
+
+.WatchedProduct .cards {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  border: 5px;
+}
+
+.WatchedProduct .card {
+  margin-bottom: 5px;
+}

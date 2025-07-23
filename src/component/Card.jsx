@@ -18,4 +18,4 @@ function Card ({data}) {
   )
 }
 
-export default Card;git 
+export default Card;

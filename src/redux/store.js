@@ -1,5 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import cart from "./cartslice";
+import watched from "./watchedslice";
 
 const test = createSlice({
   name : 'test', // 변수이름과 똑같이 하는 것이 일반적,
@@ -60,5 +61,6 @@ export default configureStore({
     cart: cart.reducer,
     num: num.reducer,
     obj: obj.reducer,
+    watched: watched.reducer,
   }
 })
